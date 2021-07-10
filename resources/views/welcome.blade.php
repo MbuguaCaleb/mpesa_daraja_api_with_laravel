@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Mastering Mpesa Daraja Api</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 
@@ -20,7 +20,9 @@
                     </div>
 
                     <div class="card-body">
-                        <button class="btn btn-primary">Request Access Token</button>
+                        <h4 id="access_token"></h4>
+
+                        <button id="getAccessToken" class="btn btn-primary">Request Access Token</button>
                     </div>
                 </div>
 
@@ -30,7 +32,7 @@
                     </div>
 
                     <div class="card-body">
-                        <button class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
 
                             Register URLs
                         </button>
@@ -70,6 +72,18 @@
         </div>
     </div>
 
+    <script src="{{asset('js/app.js')}}">
+    </script>
+    <script>
+        document.getElementById('getAccessToken').addEventListener('click',(event)=>{
+            event.preventDefault();
+            axios.post('/get-token').then((response)=>{
+                console.log(response.data)
+                document.getElementById('access_token').innerHTML = response.data.access_token
+            }).catch((error)=>
+            console.log(error))
+        })
+    </script>
 </body>
 
 </html>
